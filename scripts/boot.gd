@@ -23,7 +23,7 @@ func _ready() -> void:
 	$tween.interpolate_property($sega, "modulate", $sega.modulate, Color(1,1,1,1), 1, Tween.TRANS_LINEAR, 0)
 	$tween.interpolate_property($sega, "position", $sega.position, sega_x, 1.5, Tween.TRANS_ELASTIC, Tween.EASE_OUT)
 	$tween.start()
-	yield(get_tree().create_timer(.6), "timeout")
+	yield(get_tree().create_timer(.01), "timeout")
 
 	$tween.interpolate_property($miga, "modulate", $miga.modulate, Color(1,1,1,1), 1, Tween.TRANS_LINEAR, 0)
 	$tween.interpolate_property($miga, "position", $miga.position, miga_x, 1.5, Tween.TRANS_ELASTIC, Tween.EASE_OUT)
@@ -32,6 +32,41 @@ func _ready() -> void:
 
 	$wink.frame = 1
 	$wink_sfx.play()
+	yield(get_tree().create_timer(0.2), "timeout")
+	
+	$tween.interpolate_property($miga, "modulate", $miga.modulate, Color(1,1,1,1), 1, Tween.TRANS_LINEAR, 0)
+	$tween.interpolate_property($miga, "position", $miga.position, miga_x, 1.5, Tween.TRANS_ELASTIC, Tween.EASE_OUT)
+	$tween.start()
+	$wink_sfx.play()
+	$wink.frame = 0
+	yield(get_tree().create_timer(0.2), "timeout")
+	
+	
+	$tween.interpolate_property($miga, "modulate", $miga.modulate, Color(1,1,1,1), 1, Tween.TRANS_LINEAR, 0)
+	$tween.interpolate_property($miga, "position", $miga.position, miga_x, 1.5, Tween.TRANS_ELASTIC, Tween.EASE_OUT)
+	$tween.start()
+	$wink_sfx.play()
+	$wink.frame = 1
+	yield(get_tree().create_timer(0.2), "timeout")
+	
+	
+	$tween.interpolate_property($miga, "modulate", $miga.modulate, Color(1,1,1,1), 1, Tween.TRANS_LINEAR, 0)
+	$tween.interpolate_property($miga, "position", $miga.position, miga_x, 1.5, Tween.TRANS_ELASTIC, Tween.EASE_OUT)
+	$tween.start()
+	$wink.frame = 0
+	yield(get_tree().create_timer(0.2), "timeout")
+	
+	$wink.frame = 1
+	yield(get_tree().create_timer(0.2), "timeout")
+	$wink.frame = 0
+	yield(get_tree().create_timer(0.2), "timeout")
+	$wink.frame = 1
+	yield(get_tree().create_timer(0.2), "timeout")
+	$wink.frame = 0
+	yield(get_tree().create_timer(0.2), "timeout")
+	
+	
+	
 
-	yield(get_tree().create_timer(2), "timeout")
+	yield(get_tree().create_timer(4), "timeout")
 	GLOBAL.next_scene("intro")
