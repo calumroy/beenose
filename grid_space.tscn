@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://CanvasLayer.gd" type="Script" id=1]
-[ext_resource path="res://Node2D.gd" type="Script" id=2]
+[ext_resource path="res://ConwayGrid.gd" type="Script" id=2]
 [ext_resource path="res://Camera2D.gd" type="Script" id=3]
 [ext_resource path="res://icon.png" type="Texture" id=4]
 [ext_resource path="res://CreatorSprite.gd" type="Script" id=5]
@@ -30,7 +30,7 @@
 0/shapes = [  ]
 0/z_index = 0
 
-[node name="Node2D" type="Node2D"]
+[node name="Space" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
 visible = false
@@ -50,8 +50,8 @@ script = ExtResource( 2 )
 current = true
 script = ExtResource( 3 )
 
-[node name="Creator" type="Node2D" parent="."]
+[node name="Creator" type="Node2D" parent="ConwayGrid"]
 
-[node name="Sprite" type="Sprite" parent="Creator"]
+[node name="Sprite" type="Sprite" parent="ConwayGrid/Creator"]
 texture = ExtResource( 4 )
 script = ExtResource( 5 )
