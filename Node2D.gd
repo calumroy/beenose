@@ -6,9 +6,9 @@ extends Node2D
 # var b = "text"
 var ind = 0
 
-var grid_width = 1000
-var grid_height = 1000
-var size_sq = Vector2(4,4)
+var grid_width = 400
+var grid_height = 500
+var size_sq = Vector2(2,2)
 var life_update_period = 100.0 # milliseconds
 
 # A dict of Vector2 of grid points x,y storing the number of active cells around the point.
@@ -17,6 +17,7 @@ var active_squares = [] # A Vector2 of grid points of active cells.
 var active_squares_dict = {} # A dictionary of Vector2 representing the active cells.
 
 var left_pressed = false
+var paused = false
 var last_life_update = 0.0
 
 # Called when the node enters the scene tree for the first time.
@@ -28,19 +29,27 @@ func _process(delta):
 	update()
 	if left_pressed:
 		add_active_square_at_mouse()
-	var time_now = OS.get_ticks_msec()
-	if (time_now - last_life_update) > life_update_period:
-		last_life_update = OS.get_ticks_msec()
-		conways_life_update()
-	ind = ind+1
+	if paused == false:
+		var time_now = OS.get_ticks_msec()
+		if (time_now - last_life_update) > life_update_period:
+			last_life_update = OS.get_ticks_msec()
+			conways_life_update()
+		ind = ind+1
 	
-func _input(event):
-	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
-			if event.pressed:
+func _input(ev):
+	if ev is InputEventMouseButton:
+		if ev.button_index == BUTTON_LEFT:
+			if ev.pressed:
 				left_pressed = true
 			else:
 				left_pressed = false
+	if ev is InputEventKey:
+		if ev is InputEventKey and ev.scancode == KEY_SPACE and not ev.echo:
+			if ev.pressed:
+				if (paused == true):
+					paused = false
+				else:
+					paused = true
 			
 			
 func _draw():
@@ -116,6 +125,7 @@ func add_active_square_at_mouse():
 	var new_position = get_global_mouse_position()
 	var new_grid_pos = get_closest_grid(new_position)
 	activate_square(new_grid_pos)
+	active_squares.push_back(new_grid_pos)
 
 func get_closest_grid(new_position):
 	var x_grid = int(new_position.x / size_sq.x)
