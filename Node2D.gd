@@ -6,9 +6,9 @@ extends Node2D
 # var b = "text"
 var ind = 0
 
-var grid_width = 400
-var grid_height = 500
-var size_sq = Vector2(2,2)
+var grid_width = 10
+var grid_height = 10
+var size_sq = Vector2(64,64)
 var life_update_period = 100.0 # milliseconds
 
 # A dict of Vector2 of grid points x,y storing the number of active cells around the point.
@@ -125,17 +125,25 @@ func add_active_square_at_mouse():
 	var new_position = get_global_mouse_position()
 	var new_grid_pos = get_closest_grid(new_position)
 	activate_square(new_grid_pos)
-	active_squares.push_back(new_grid_pos)
+	
+func add_creator_at_mouse():
+	var new_position = get_global_mouse_position()
+	var new_grid_pos = get_closest_grid(new_position)
+	
+	activate_square(new_grid_pos)
 
 func get_closest_grid(new_position):
-	var x_grid = int(new_position.x / size_sq.x)
-	var y_grid = int(new_position.y / size_sq.y)
-	var max_x_grid = grid_height * size_sq.x
-	var max_y_grid = grid_height * size_sq.y
-	if x_grid > max_x_grid:
-		x_grid = max_x_grid	
-	if y_grid > max_y_grid:
-		y_grid = max_y_grid	
+	var x_grid 
+	var y_grid 
+	if new_position.x < 0:
+		x_grid = int(new_position.x / size_sq.x) - 1
+	else:
+		x_grid = int(new_position.x / size_sq.x)
+	if new_position.y < 0:
+		y_grid = int(new_position.y / size_sq.y) -1
+	else:
+		y_grid = int(new_position.y / size_sq.y)
+	
 	var grid_pos = Vector2(x_grid, y_grid)
 	
 	return grid_pos
@@ -152,7 +160,7 @@ func activate_square(new_grid_pos):
 	# if it hasn't already been done.
 	if not active_squares_dict.has(new_grid_pos):
 		active_squares_dict[new_grid_pos] = true
-		#active_squares.push_back(new_grid_pos)
+		active_squares.push_back(new_grid_pos)
 
 func draw_circle_arc(center, radius, angle_from, angle_to, color):
 	var nb_points = 32
