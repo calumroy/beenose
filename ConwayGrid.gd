@@ -9,7 +9,7 @@ var ind = 0
 var grid_width = 10
 var grid_height = 10
 var size_sq = Vector2(16,16)
-var life_update_period = 100.0 # milliseconds
+var life_update_period = 1.0 # milliseconds
 
 # A dict of Vector2 of grid points x,y storing the number of active cells around the point.
 var active_neighbours_count = {} 
