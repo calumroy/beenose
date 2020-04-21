@@ -51,7 +51,17 @@ current = true
 script = ExtResource( 3 )
 
 [node name="Creator" type="Node2D" parent="ConwayGrid"]
+position = Vector2( 16, 0 )
 
 [node name="Sprite" type="Sprite" parent="ConwayGrid/Creator"]
 texture = ExtResource( 4 )
+centered = false
+script = ExtResource( 5 )
+
+[node name="Creator2" type="Node2D" parent="ConwayGrid"]
+position = Vector2( 32, 64 )
+
+[node name="Sprite" type="Sprite" parent="ConwayGrid/Creator2"]
+texture = ExtResource( 4 )
+centered = false
 script = ExtResource( 5 )

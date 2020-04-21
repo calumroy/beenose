@@ -8,7 +8,7 @@ var ind = 0
 
 var grid_width = 10
 var grid_height = 10
-var size_sq = Vector2(64,64)
+var size_sq = Vector2(16,16)
 var life_update_period = 100.0 # milliseconds
 
 # A dict of Vector2 of grid points x,y storing the number of active cells around the point.
@@ -135,15 +135,9 @@ func add_creator_at_mouse():
 func get_closest_grid(new_position):
 	var x_grid 
 	var y_grid 
-	if new_position.x < 0:
-		x_grid = int(new_position.x / size_sq.x) - 1
-	else:
-		x_grid = int(new_position.x / size_sq.x)
-	if new_position.y < 0:
-		y_grid = int(new_position.y / size_sq.y) -1
-	else:
-		y_grid = int(new_position.y / size_sq.y)
-	
+	# Use floor because of negative positions.
+	x_grid = floor(new_position.x / size_sq.x) 
+	y_grid = floor(new_position.y / size_sq.y) 
 	var grid_pos = Vector2(x_grid, y_grid)
 	
 	return grid_pos
