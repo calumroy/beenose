@@ -8,9 +8,20 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Node2D",
+"class": "Creator",
+"language": "GDScript",
+"path": "res://CreatorNode.gd"
+}, {
+"base": "Sprite",
+"class": "CreatorSprite",
+"language": "GDScript",
+"path": "res://CreatorSprite.gd"
+} ]
 _global_script_class_icons={
-
+"Creator": "",
+"CreatorSprite": ""
 }
 
 [application]
