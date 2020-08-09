@@ -1,4 +1,5 @@
 extends Node2D
+class_name Creator
 
 # Declare member variables here. 
 var creator_period = 2000.0 # milliseconds
